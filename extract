@@ -22,7 +22,8 @@ extract() {
     cd $tmp
     ar xv $deb || die "ar failed"
     if [ -f "data.tar.zst" ];then
-        tar -I zstd -xf data.tar.* || die "tar failed"
+        zstd -d data.tar.zst || die "zstd failed"
+        tar xf data.tar || die "tar failed"
     else
         tar xf data.tar.* || die "tar failed"
     fi
